@@ -2,7 +2,7 @@
 
 from docx import Document
 import json
-from cellparser import find_parity, find_teacher, find_type, find_exercise, find_room
+from cellparser import find_parity, find_teacher, find_type, find_exercise, find_room, find_remotely
 import re
 import glob
 
@@ -104,16 +104,19 @@ for file_name in list(glob.glob(r'docx\*.docx')):
 
                 if len(cell) > 0:
                     #print(cell)
+                    remotely, cell = find_remotely(cell)
                     parity, cell = find_parity(cell)
                     #print("четность", parity)
-
                     types, cell = find_type(cell)
                     #print("тип", types)
                     exercise, cell = find_exercise(cell)
                     teachers, cell = find_teacher(cell)
                     #print("учитель", teachers)
                     #print("предмет", exercise)
-                    room = find_room(cell)
+                    if remotely:
+                        room="Дистанционно"
+                    else:
+                        room = find_room(cell)
                     #print("ауд", room)
 
 

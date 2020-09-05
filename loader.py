@@ -140,7 +140,7 @@ for file_name in glob.glob(r'json\*.json'):
         group_id = get_group_id(group_name)
 
         semester = '1'
-        year = '2020'
+        year = '2017'
         schedule_id = get_schedule_id(group_name, year, semester)
         print(group_name, group_id, schedule_id)
         schedule = json.load(open(file_name, 'r', encoding='utf8'))
